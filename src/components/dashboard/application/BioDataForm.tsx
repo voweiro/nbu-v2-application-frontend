@@ -136,10 +136,10 @@ const BioDataForm = ({ onContinue, readOnly = false }: BioDataFormProps) => {
   const formData = React.useMemo(() => ({ ...baseData, ...draftData }), [baseData, draftData]);
 
   useEffect(() => {
-    if (!profile && !admissionLoading) {
+    if (!profile && !admissionLoading && !error) {
       dispatch(fetchAdmissionProfile());
     }
-  }, [dispatch, profile, admissionLoading]);
+  }, [dispatch, profile, admissionLoading, error]);
 
   const countries = React.useMemo(() => COUNTRIES_DATA, []);
   const isNigeria = formData.nationality?.trim().toLowerCase() === 'nigeria';

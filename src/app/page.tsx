@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { setCredentials } from "@/lib/features/auth/authSlice";
@@ -29,11 +29,6 @@ export default function AuthPage() {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
 
-  // Redirect to dashboard if user is already logged in
-  if (user) {
-    router.push("/dashboard");
-  }
-
   // Form State
   const [formData, setFormData] = useState({
     firstName: "",
@@ -42,6 +37,15 @@ export default function AuthPage() {
     email: "",
     password: "",
   });
+
+  // Redirect to dashboard if user is already logged in
+  useEffect(() => {
+    if (user) {
+      router.push("/dashboard");
+    }
+  }, [user, router]);
+
+  if (user) return null;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
