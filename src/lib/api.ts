@@ -10,7 +10,7 @@ export const injectStore = (_store: any) => {
 
 // Create an Axios instance
 const api = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: API_BASE_URL || '', // Use Host-Only or empty for relative root
   withCredentials: true, // Enable cookies
   headers: {
     'Content-Type': 'application/json',
@@ -19,10 +19,9 @@ const api = axios.create({
 
 // Add a request interceptor to ensure all relative requests are prefixed with /api
 api.interceptors.request.use((config) => {
-    if (config.url && !config.url.startsWith('http') && !config.url.startsWith('/api')) {
-        // Ensure accurate joining without doubling /api
-        const cleanUrl = config.url.startsWith('/') ? config.url : `/${config.url}`;
-        config.url = `/api${cleanUrl}`;
+    // Only prefix relative paths (starting with /) that don't already have /api
+    if (config.url && config.url.startsWith('/') && !config.url.startsWith('/api')) {
+        config.url = `/api${config.url}`;
     }
     return config;
 });
