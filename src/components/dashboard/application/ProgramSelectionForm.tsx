@@ -55,7 +55,13 @@ const ProgramSelectionForm = ({ onContinue, onBack, readOnly = false }: ProgramS
   const selectedProgram = programs.find(p => p.id === effectiveProgramId);
 
   // Derive Program Type
-  const effectiveProgramType = selectedProgramType || selectedProgram?.programLevel?.name || '';
+  const programTypes = (() => {
+    // Get unique program types from active sessions
+    const typesFromSessions = activeSessions.map(s => s.programType).filter((t): t is string => !!t);
+    return Array.from(new Set(typesFromSessions)).sort();
+  })()
+
+  const effectiveProgramType = selectedProgramType || selectedProgram?.programLevel?.name || programTypes[0] || '';
 
   // Derive Faculty ID from Program -> Department -> Faculty
   const derivedDepartmentId = selectedProgram?.departmentId || '';
@@ -173,22 +179,18 @@ const ProgramSelectionForm = ({ onContinue, onBack, readOnly = false }: ProgramS
     }
   };
 
-  const programTypes = (() => {
-    const allTypes = Array.from(new Set(programs.map((p) => p.programLevel?.name).filter((name): name is string => !!name)));
-    
-    // Filter types that have an active application session
-    // We match by programLevelId if present, or fall back to programType (name) matching
-    return allTypes.filter(typeName => {
-      return activeSessions.some(session => 
-        session.programType?.toUpperCase() === typeName.toUpperCase() ||
-        programs.find(p => p.programLevel?.name === typeName)?.programLevelId === session.programLevelId
-      );
-    }).sort();
-  })()
-
   const filteredPrograms = (() => {
     if (!effectiveProgramType) return [];
-    return programs.filter((p) => p.programLevel?.name === effectiveProgramType);
+    
+    // Find the session that matches this type to get the levelId for robust matching
+    const targetSession = activeSessions.find(s => 
+      s.programType?.toUpperCase() === effectiveProgramType.toUpperCase()
+    );
+
+    return programs.filter((p) => 
+      p.programLevel?.name?.toUpperCase() === effectiveProgramType.toUpperCase() ||
+      (targetSession?.programLevelId && p.programLevelId === targetSession.programLevelId)
+    );
   })()
   
   const availableEntryModes = selectedProgram?.entryMode || ['UTME', 'DIRECT_ENTRY'];
