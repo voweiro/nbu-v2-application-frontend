@@ -59,7 +59,17 @@ export default function DashboardLayout({
     }
   }, [user, profile, pathname, router]);
 
-  if (!isAuthenticated && !user && typeof window !== 'undefined') {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null // Return null on server and initial client render to avoid hydration mismatch
+  }
+
+  if (!isAuthenticated && !user) {
     return null
   }
 

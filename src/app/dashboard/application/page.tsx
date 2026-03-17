@@ -10,10 +10,16 @@ import ApplicationWizard from '@/components/dashboard/application/ApplicationWiz
 export default function ApplicationPage() {
   const dispatch = useAppDispatch();
   const { applications, profileLoading } = useAppSelector((state) => state.admission);
-  const [viewMode, setViewMode] = useState<'list' | 'wizard'>(() => {
-    if (typeof window === 'undefined') return 'list';
-    return sessionStorage.getItem('application_mode') === 'wizard' ? 'wizard' : 'list';
-  });
+  const [mounted, setMounted] = useState(false);
+  const [viewMode, setViewMode] = useState<'list' | 'wizard'>('list');
+
+  useEffect(() => {
+    setMounted(true);
+    const savedMode = sessionStorage.getItem('application_mode');
+    if (savedMode === 'wizard') {
+        setViewMode('wizard');
+    }
+  }, []);
 
   // Initial Data Fetch
   useEffect(() => {
@@ -77,6 +83,10 @@ export default function ApplicationPage() {
               </div>
           </div>
       );
+  }
+
+  if (!mounted) {
+      return null;
   }
 
   return (
