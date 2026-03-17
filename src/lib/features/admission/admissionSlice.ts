@@ -76,13 +76,15 @@ interface ApplicationSession {
   startDate: string;
   endDate: string;
   isActive: boolean;
+  programType?: string;
+  programLevelId?: string;
 }
 
 interface AdmissionState {
   profile: ApplicantProfile | null;
   application: Application | null;
   applications: Application[];
-  activeSession: ApplicationSession | null;
+  activeSessions: ApplicationSession[]; // Changed from activeSession: ApplicationSession | null
   activeSessionFetched: boolean;
   loading: boolean;
   profileLoading: boolean;
@@ -104,7 +106,7 @@ const initialState: AdmissionState = {
   profile: null,
   application: null,
   applications: [],
-  activeSession: null,
+  activeSessions: [], // Changed from activeSession: null
   activeSessionFetched: false,
   loading: false,
   profileLoading: false,
@@ -158,15 +160,15 @@ export const fetchActiveSession = createAsyncThunk(
   'admission/fetchActiveSession',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await api.get('/admission/sessions/active');
-      return response.data;
+      const response = await api.get('/admission/sessions/active-list');
+      return response.data; // Now returns an array
     } catch (err: unknown) {
       const error = err as ApiError;
-      // 404 means no active session, which is valid (just closed)
+      // 404 might mean no active sessions, return empty array
       if (error.response?.status === 404) {
-          return null;
+          return [];
       }
-      const errorMessage = error.response?.data?.message || error.message || 'Failed to fetch active session';
+      const errorMessage = error.response?.data?.message || error.message || 'Failed to fetch active sessions';
       return rejectWithValue(errorMessage);
     }
   }
@@ -381,7 +383,7 @@ const admissionSlice = createSlice({
       })
       .addCase(fetchActiveSession.fulfilled, (state, action) => {
         state.loading = false;
-        state.activeSession = action.payload;
+        state.activeSessions = action.payload || [];
         state.activeSessionFetched = true;
       })
       .addCase(fetchActiveSession.rejected, (state, action) => {

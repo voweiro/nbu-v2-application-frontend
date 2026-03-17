@@ -26,7 +26,7 @@ const ProgramSelectionForm = ({ onContinue, onBack, readOnly = false }: ProgramS
   const router = useRouter();
   
   const { faculties, programs, sessions, loading: academicLoading } = useAppSelector((state) => state.academic);
-  const { application, activeSession, loading: admissionLoading, activeSessionFetched } = useAppSelector((state) => state.admission);
+  const { application, activeSessions, loading: admissionLoading, activeSessionFetched } = useAppSelector((state) => state.admission);
 
   // Initialize state from application if available to avoid race conditions
   const [selectedAcademicSessionId, setSelectedAcademicSessionId] = useState<string>('');
@@ -43,13 +43,13 @@ const ProgramSelectionForm = ({ onContinue, onBack, readOnly = false }: ProgramS
 
   // Load faculties and programs only if session is active
   useEffect(() => {
-    if (activeSession) {
+    if (activeSessions.length > 0) {
         if (faculties.length === 0) dispatch(fetchFaculties());
         // Fetch all programs once
         if (programs.length === 0) dispatch(fetchPrograms());
         if (sessions.length === 0) dispatch(fetchSessions());
     }
-  }, [dispatch, activeSession, faculties.length, programs.length, sessions.length]);
+  }, [dispatch, activeSessions, faculties.length, programs.length, sessions.length]);
 
   const effectiveProgramId = selectedProgramId || application?.programmeId || '';
   const selectedProgram = programs.find(p => p.id === effectiveProgramId);
@@ -174,8 +174,16 @@ const ProgramSelectionForm = ({ onContinue, onBack, readOnly = false }: ProgramS
   };
 
   const programTypes = (() => {
-    const types = new Set(programs.map((p) => p.programLevel?.name).filter((name): name is string => !!name));
-    return Array.from(types).sort();
+    const allTypes = Array.from(new Set(programs.map((p) => p.programLevel?.name).filter((name): name is string => !!name)));
+    
+    // Filter types that have an active application session
+    // We match by programLevelId if present, or fall back to programType (name) matching
+    return allTypes.filter(typeName => {
+      return activeSessions.some(session => 
+        session.programType?.toUpperCase() === typeName.toUpperCase() ||
+        programs.find(p => p.programLevel?.name === typeName)?.programLevelId === session.programLevelId
+      );
+    }).sort();
   })()
 
   const filteredPrograms = (() => {
@@ -188,7 +196,7 @@ const ProgramSelectionForm = ({ onContinue, onBack, readOnly = false }: ProgramS
   const isLoading = academicLoading || admissionLoading;
 
   const sessionChecked = activeSessionFetched && !admissionLoading;
-  if (sessionChecked && !activeSession) {
+  if (sessionChecked && activeSessions.length === 0) {
     return (
       <div className="w-full p-12 bg-white dark:bg-zinc-950 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/20 text-center animate-in fade-in zoom-in duration-300">
         <div className="w-20 h-20 bg-red-50 dark:bg-red-900/10 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-red-100 dark:border-red-900/30">
