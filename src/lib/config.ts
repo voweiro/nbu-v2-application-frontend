@@ -5,14 +5,15 @@ export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 export const buildPaymentUrl = (path: string) => {
   const baseUrl = API_BASE_URL?.endsWith('/') ? API_BASE_URL.slice(0, -1) : API_BASE_URL;
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
-  return `${baseUrl}${cleanPath}`;
+  // Gateway root + /api + service path
+  return `${baseUrl}/api${cleanPath}`;
 };
 
 // Helper to resolve file URLs (passport, certificates, etc.)
 export const getFileUrl = (url: string | undefined) => {
   if (!url) return '';
   
-  const baseUrl = API_BASE_URL;
+  const baseUrl = API_BASE_URL?.endsWith('/') ? API_BASE_URL.slice(0, -1) : API_BASE_URL;
   let fileId = '';
   
   // Extract ID from Google Drive URLs
@@ -27,7 +28,7 @@ export const getFileUrl = (url: string | undefined) => {
   }
 
   if (fileId) {
-    return `${baseUrl}/admission/file/${fileId}`;
+    return `${baseUrl}/api/admission/file/${fileId}`;
   }
 
   if (url.startsWith('http://') || url.startsWith('https://')) {
@@ -38,9 +39,8 @@ export const getFileUrl = (url: string | undefined) => {
   const cleanUrl = url.startsWith('/') ? url : `/${url}`;
   
   if (cleanUrl.startsWith('/api/admission/file/')) {
-      const pathWithNoApiPrefix = cleanUrl.replace(/^\/api/, '');
-      return `${baseUrl}${pathWithNoApiPrefix}`;
+      return `${baseUrl}${cleanUrl}`;
   }
 
-  return `${baseUrl}/admission/file/${encodeURIComponent(url)}`;
+  return `${baseUrl}/api/admission/file/${encodeURIComponent(url)}`;
 };

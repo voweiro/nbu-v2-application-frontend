@@ -17,6 +17,16 @@ const api = axios.create({
   },
 });
 
+// Add a request interceptor to ensure all relative requests are prefixed with /api
+api.interceptors.request.use((config) => {
+    if (config.url && !config.url.startsWith('http') && !config.url.startsWith('/api')) {
+        // Ensure accurate joining without doubling /api
+        const cleanUrl = config.url.startsWith('/') ? config.url : `/${config.url}`;
+        config.url = `/api${cleanUrl}`;
+    }
+    return config;
+});
+
 // Add a response interceptor to handle errors
 api.interceptors.response.use(
   (response) => response,
