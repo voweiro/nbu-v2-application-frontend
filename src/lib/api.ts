@@ -17,12 +17,19 @@ const api = axios.create({
   },
 });
 
-// Add a request interceptor to ensure all relative requests are prefixed with /api
+// Add a request interceptor to handle authentication and path prefixing
 api.interceptors.request.use((config) => {
-    // Only prefix relative paths (starting with /) that don't already have /api
-    if (config.url && config.url.startsWith('/') && !config.url.startsWith('/api')) {
-        config.url = `/api${config.url}`;
+    // 1. Add Bearer token from localStorage for absolute cross-domain requests
+    if (typeof window !== 'undefined') {
+        const token = localStorage.getItem('nbu_token');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
     }
+    
+    // 2. We no longer prefix /api here because API_BASE_URL now includes it
+    // and we are using absolute URLs which already have the correct path.
+    
     return config;
 });
 

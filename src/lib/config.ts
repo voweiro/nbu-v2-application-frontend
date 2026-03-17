@@ -4,17 +4,14 @@ export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 // Helper function to build payment service URLs
 export const buildPaymentUrl = (path: string) => {
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
-  // When API_BASE_URL is /api, we just join them. 
-  // If it's empty, we should still ensure it starts with /api for the rewrite
-  const base = API_BASE_URL === '/' ? '' : (API_BASE_URL || '/api');
-  return `${base}${cleanPath}`;
+  return `${API_BASE_URL || ''}${cleanPath}`;
 };
 
 // Helper to resolve file URLs (passport, certificates, etc.)
 export const getFileUrl = (url: string | undefined) => {
   if (!url) return '';
   
-  const base = API_BASE_URL === '/' ? '' : (API_BASE_URL || '/api');
+  const base = API_BASE_URL || '';
   let fileId = '';
   
   // Extract ID from Google Drive URLs

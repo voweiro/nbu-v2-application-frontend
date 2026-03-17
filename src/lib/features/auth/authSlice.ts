@@ -63,13 +63,17 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setCredentials: (state, action: PayloadAction<{ user: User }>) => {
+    setCredentials: (state, action: PayloadAction<{ user: User & { token?: string } }>) => {
       state.user = action.payload.user;
       state.isAuthenticated = true;
+      if (action.payload.user.token) {
+        localStorage.setItem('nbu_token', action.payload.user.token);
+      }
     },
     logout: (state) => {
       state.user = null;
       state.isAuthenticated = false;
+      localStorage.removeItem('nbu_token');
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
