@@ -1,12 +1,11 @@
 // Base API URL
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-// Payment service configuration
-export const PAYMENT_SERVICE_URL = process.env.NEXT_PUBLIC_PAYMENT_API_URL;
-
 // Helper function to build payment service URLs
 export const buildPaymentUrl = (path: string) => {
-  return `${PAYMENT_SERVICE_URL}${path}`;
+  const baseUrl = API_BASE_URL?.endsWith('/') ? API_BASE_URL.slice(0, -1) : API_BASE_URL;
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  return `${baseUrl}${cleanPath}`;
 };
 
 // Helper to resolve file URLs (passport, certificates, etc.)
