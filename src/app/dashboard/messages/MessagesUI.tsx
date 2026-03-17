@@ -11,7 +11,7 @@ interface MessagesUIProps {
 
 export default function MessagesUI({ applicationId }: MessagesUIProps) {
   const dispatch = useAppDispatch();
-  const { messages, profile } = useAppSelector((state) => state.admission);
+  const { messages, profile, application } = useAppSelector((state) => state.admission);
   const [newMessage, setNewMessage] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -47,10 +47,16 @@ export default function MessagesUI({ applicationId }: MessagesUIProps) {
         return;
     }
 
+    let receiverId = 'ADMISSION_OFFICE_UNDERGRAD'; // Default for UTME/DE
+    if (application?.entryMode === 'POSTGRADUATE') {
+        receiverId = 'ADMISSION_OFFICE_POSTGRAD';
+    }
+    // Note: Business School & Chinese Ed can be extended here by checking application.programmeId if needed.
+
     await dispatch(sendMessage({ 
         applicationId, 
         content: newMessage,
-        receiverId: 'ADMISSION_OFFICE' // Default for applicant
+        receiverId 
     }));
     setNewMessage('');
   };
