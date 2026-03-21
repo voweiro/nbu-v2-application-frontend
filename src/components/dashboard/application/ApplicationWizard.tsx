@@ -67,10 +67,10 @@ export default function ApplicationWizard({ onExit }: ApplicationWizardProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafafa] dark:bg-black animate-in fade-in duration-500">
+    <div className="w-full min-h-screen bg-[#fafafa] dark:bg-black animate-in fade-in duration-500 overflow-x-hidden">
       {/* Header Section */}
       <div className="bg-white dark:bg-zinc-950 border-b border-zinc-100 dark:border-zinc-900 border-t border-red-600">
-        <div className="w-full px-4 md:px-6 h-auto min-h-20 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="w-full px-2 sm:px-4 md:px-6 h-auto min-h-20 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3 md:gap-4 w-full sm:w-auto">
             <button onClick={onExit} className="p-2 md:p-2.5 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-2xl transition-all text-zinc-500">
               <ArrowLeft className="w-4 h-4 md:w-5 md:h-5" />
@@ -136,7 +136,7 @@ export default function ApplicationWizard({ onExit }: ApplicationWizardProps) {
         </div>
       </div>
 
-      <main className="w-full px-6 py-12 md:py-20">
+      <main className="w-full px-2 sm:px-4 md:px-6 py-8 md:py-20">
         <div className="relative">
             {/* Subtle background decoration */}
             <div className="absolute -top-40 -left-40 w-80 h-80 bg-red-500/5 blur-[120px] rounded-full pointer-events-none" />

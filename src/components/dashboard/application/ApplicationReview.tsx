@@ -225,7 +225,7 @@ export default function ApplicationReview({ onBack, onExit, readOnly = false }: 
   };
 
   return (
-    <div className="w-full py-10 px-6 space-y-12 animate-in fade-in slide-in-from-bottom-6 duration-1000">
+    <div className="w-full py-6 md:py-10 px-2 sm:px-4 md:px-6 space-y-8 md:space-y-12 animate-in fade-in slide-in-from-bottom-6 duration-1000">
       
       {/* Hero Header */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-zinc-100 dark:border-zinc-900">
@@ -313,7 +313,7 @@ export default function ApplicationReview({ onBack, onExit, readOnly = false }: 
         <div className="lg:col-span-3 space-y-8">
             
             {/* Personal Profile Section */}
-            <div className="bg-white dark:bg-zinc-950 rounded-[32px] border border-zinc-200/60 dark:border-zinc-800/60 shadow-xl shadow-zinc-200/10 overflow-hidden">
+            <div className="bg-white dark:bg-zinc-950 rounded-2xl md:rounded-[32px] border border-zinc-200/60 dark:border-zinc-800/60 shadow-xl shadow-zinc-200/10 overflow-hidden">
                 <div className="p-6 md:p-8 border-b border-zinc-100 dark:border-zinc-900 flex items-center justify-between bg-zinc-50/50 dark:bg-zinc-900/20">
                     <div className="flex items-center gap-4">
                         <div className="relative w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center shadow-lg shadow-zinc-200/20 overflow-hidden shrink-0">
@@ -336,7 +336,7 @@ export default function ApplicationReview({ onBack, onExit, readOnly = false }: 
                         </div>
                     </div>
                 </div>
-                <div className="p-6 md:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-6 md:gap-y-8">
+                <div className="p-4 sm:p-6 md:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-5 md:gap-y-8">
                     {/* Identity & Contact */}
                     <div className="space-y-1">
                         <p className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-zinc-400">First Name</p>
@@ -424,7 +424,7 @@ export default function ApplicationReview({ onBack, onExit, readOnly = false }: 
             </div>
 
             {/* Academic Track Section */}
-            <div className="bg-white dark:bg-zinc-950 rounded-[32px] border border-zinc-200/60 dark:border-zinc-800/60 shadow-xl shadow-zinc-200/10 overflow-hidden">
+            <div className="bg-white dark:bg-zinc-950 rounded-2xl md:rounded-[32px] border border-zinc-200/60 dark:border-zinc-800/60 shadow-xl shadow-zinc-200/10 overflow-hidden">
                 <div className="p-6 md:p-8 border-b border-zinc-100 dark:border-zinc-900 flex items-center justify-between bg-zinc-50/50 dark:bg-zinc-900/20">
                     <div className="flex items-center gap-4">
                         <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-red-600 text-white flex items-center justify-center shadow-lg shadow-red-600/20 shrink-0">
@@ -456,7 +456,7 @@ export default function ApplicationReview({ onBack, onExit, readOnly = false }: 
             </div>
 
             {/* Document Vault Section */}
-            <div className="bg-white dark:bg-zinc-950 rounded-[32px] border border-zinc-200/60 dark:border-zinc-800/60 shadow-xl shadow-zinc-200/10 overflow-hidden">
+            <div className="bg-white dark:bg-zinc-950 rounded-2xl md:rounded-[32px] border border-zinc-200/60 dark:border-zinc-800/60 shadow-xl shadow-zinc-200/10 overflow-hidden">
                 <div className="p-6 md:p-8 border-b border-zinc-100 dark:border-zinc-900 flex items-center justify-between bg-zinc-50/50 dark:bg-zinc-900/20">
                     <div className="flex items-center gap-4">
                         <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-red-800 text-white flex items-center justify-center shadow-lg shadow-red-800/20 shrink-0">
@@ -494,7 +494,7 @@ export default function ApplicationReview({ onBack, onExit, readOnly = false }: 
         <div className="space-y-8">
             
             {/* Program Summary Card */}
-            <div className="bg-zinc-900 dark:bg-zinc-950 rounded-[32px] p-6 md:p-8 text-white shadow-2xl shadow-red-900/20 relative overflow-hidden group">
+            <div className="bg-zinc-900 dark:bg-zinc-950 rounded-2xl md:rounded-[32px] p-5 sm:p-6 md:p-8 text-white shadow-2xl shadow-red-900/20 relative overflow-hidden group">
                 {/* Decorative glow */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-red-500 blur-[80px] rounded-full -mr-16 -mt-16 opacity-30 group-hover:opacity-50 transition-opacity" />
                 
@@ -526,7 +526,7 @@ export default function ApplicationReview({ onBack, onExit, readOnly = false }: 
             </div>
 
             {/* Submission Requirements Checklist */}
-            <div className="bg-white dark:bg-zinc-950 rounded-[32px] border border-zinc-200 dark:border-zinc-800 p-8 space-y-6 shadow-xl shadow-zinc-200/10">
+            <div className="bg-white dark:bg-zinc-950 rounded-2xl md:rounded-[32px] border border-zinc-200 dark:border-zinc-800 p-5 sm:p-6 md:p-8 space-y-6 shadow-xl shadow-zinc-200/10">
                 <h4 className="text-sm font-black text-zinc-900 dark:text-zinc-50 uppercase tracking-widest flex items-center gap-2">
                     <ShieldCheck className="w-4 h-4 text-red-600" />
                     Submission Ready?

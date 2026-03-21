@@ -26,7 +26,8 @@ export default function MessagesPage() {
   const appId = application?.id;
 
   return (
-    <div className="w-full space-y-8 pb-12">
+    <div className="p-4 sm:p-6 lg:p-10">
+      <div className="max-w-7xl mx-auto space-y-8 pb-12">
       {/* Messages Header */}
       <div className="relative h-40 rounded-3xl bg-gradient-to-r from-red-600 to-red-800 overflow-hidden shadow-xl shadow-red-500/10 flex items-center px-10">
         <div className="absolute inset-0 bg-white/10 backdrop-blur-3xl animate-pulse" />
@@ -43,6 +44,7 @@ export default function MessagesPage() {
 
       <div className="w-full">
         <MessagesUI applicationId={appId} />
+      </div>
       </div>
     </div>
   );

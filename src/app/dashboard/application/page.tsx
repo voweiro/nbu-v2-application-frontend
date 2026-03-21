@@ -92,10 +92,12 @@ export default function ApplicationPage() {
   return (
     <>
         {viewMode === 'list' ? (
+          <div className="p-4 sm:p-6 lg:p-10">
             <ApplicationList 
                 onStartNew={handleStartNew} 
                 onContinue={handleContinue} 
             />
+          </div>
         ) : (
             <ApplicationWizard 
                 onExit={handleExit} 

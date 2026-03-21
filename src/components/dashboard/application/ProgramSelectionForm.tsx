@@ -225,10 +225,10 @@ const ProgramSelectionForm = ({ onContinue, onBack, readOnly = false }: ProgramS
   }
 
   return (
-    <div key={application?.id || 'new-app'} className="w-full p-8 bg-white dark:bg-zinc-950 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/20 animaite-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex items-center justify-between mb-8 pb-6 border-b border-zinc-100 dark:border-zinc-900">
+    <div key={application?.id || 'new-app'} className="w-full px-2 py-6 sm:p-6 md:p-8 bg-white dark:bg-zinc-950 rounded-2xl md:rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/20 animaite-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 md:mb-8 pb-4 md:pb-6 border-b border-zinc-100 dark:border-zinc-900 gap-3">
         <div>
-          <h2 className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight flex items-center gap-3">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight flex items-center gap-3">
              <GraduationCap className="w-8 h-8 text-red-600" />
              Program Selection
           </h2>
@@ -373,7 +373,7 @@ const ProgramSelectionForm = ({ onContinue, onBack, readOnly = false }: ProgramS
           </div>
         </div>
 
-        <div className="flex items-center gap-4 pt-10 border-t border-zinc-100 dark:border-zinc-900">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-6 md:pt-10 border-t border-zinc-100 dark:border-zinc-900">
             {onBack && (
               <button
                 type="button"
@@ -402,7 +402,7 @@ const ProgramSelectionForm = ({ onContinue, onBack, readOnly = false }: ProgramS
               type="submit"
               name="continue"
               disabled={isLoading || !effectiveAcademicSessionId}
-              className="flex items-center gap-3 px-10 py-4 bg-red-600 text-white font-extrabold rounded-2xl shadow-xl shadow-red-600/30 hover:bg-red-500 hover:scale-[1.02] active:scale-95 transition-all ml-auto disabled:opacity-50"
+              className="flex items-center justify-center gap-3 px-10 py-4 bg-red-600 text-white font-extrabold rounded-2xl shadow-xl shadow-red-600/30 hover:bg-red-500 hover:scale-[1.02] active:scale-95 transition-all sm:ml-auto disabled:opacity-50 w-full sm:w-auto"
             >
               {isLoading ? (
                 <Loader2 className="w-5 h-5 animate-spin" />

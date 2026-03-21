@@ -82,18 +82,18 @@ export default function DashboardLayout({
         onClose={() => setIsMobileMenuOpen(false)}
       />
       
-      <div className="flex flex-col flex-1 overflow-hidden relative">
+      <div className="flex flex-col flex-1 min-w-0 overflow-hidden relative">
         <Header 
           onMobileMenuToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         />
         
-        <main className="flex-1 overflow-y-auto custom-scrollbar p-4 sm:p-6 lg:p-10">
+        <main className="flex-1 w-full overflow-y-auto overflow-x-hidden custom-scrollbar">
           <div className="w-full animate-in fade-in slide-in-from-bottom-4 duration-500">
             {children}
           </div>
         </main>
         
-        <footer className="px-8 py-6 border-t border-zinc-200 bg-white text-zinc-400 text-[10px] tracking-wider uppercase font-bold text-center lg:text-left z-10 shrink-0">
+        <footer className="px-4 lg:px-8 py-6 border-t border-zinc-200 bg-white text-zinc-400 text-[10px] tracking-wider uppercase font-bold text-center lg:text-left z-10 shrink-0">
           © 2026 NBU-NET Systems • Student Application Portal • v1.0.4
         </footer>
       </div>

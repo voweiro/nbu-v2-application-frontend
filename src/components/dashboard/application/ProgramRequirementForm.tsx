@@ -506,8 +506,8 @@ export default function ProgramRequirementForm({ onContinue, onBack, readOnly = 
         
         {/* JAMB Section */}
         {currentRequirement?.requiresJamb && (
-          <Card className="rounded-3xl border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/20 overflow-hidden">
-            <CardHeader className="bg-zinc-50/50 dark:bg-zinc-900/30 border-b border-zinc-100 dark:border-zinc-900 p-6 md:p-8">
+          <Card className="rounded-2xl md:rounded-3xl border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/20 overflow-hidden">
+            <CardHeader className="bg-zinc-50/50 dark:bg-zinc-900/30 border-b border-zinc-100 dark:border-zinc-900 p-4 sm:p-6 md:p-8">
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 md:w-12 md:h-12 bg-red-100 dark:bg-red-900/20 rounded-2xl flex items-center justify-center text-red-600 shrink-0">
                     <Sparkles className="w-5 h-5 md:w-6 md:h-6" />
@@ -518,7 +518,7 @@ export default function ProgramRequirementForm({ onContinue, onBack, readOnly = 
                 </div>
               </div>
             </CardHeader>
-            <CardContent className="p-6 md:p-8 space-y-8">
+            <CardContent className="px-2 py-6 sm:p-6 md:p-8 space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="space-y-3">
                   <Label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 ml-1">Registration Number</Label>
@@ -596,8 +596,8 @@ export default function ProgramRequirementForm({ onContinue, onBack, readOnly = 
 
         {/* Previous Education / Transcript Section */}
         {currentRequirement?.requiresTranscript && (
-        <Card className="rounded-3xl border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/20 overflow-hidden">
-          <CardHeader className="bg-zinc-50/50 dark:bg-zinc-900/30 border-b border-zinc-100 dark:border-zinc-900 p-6 md:p-8">
+        <Card className="rounded-2xl md:rounded-3xl border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/20 overflow-hidden">
+          <CardHeader className="bg-zinc-50/50 dark:bg-zinc-900/30 border-b border-zinc-100 dark:border-zinc-900 p-4 sm:p-6 md:p-8">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 md:w-12 md:h-12 bg-red-800 dark:bg-red-900/40 rounded-2xl flex items-center justify-center text-red-100 shrink-0">
                   <Briefcase className="w-5 h-5 md:w-6 md:h-6" />
@@ -608,7 +608,7 @@ export default function ProgramRequirementForm({ onContinue, onBack, readOnly = 
               </div>
             </div>
           </CardHeader>
-          <CardContent className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <CardContent className="px-2 py-6 sm:p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
              <div className="md:col-span-2 space-y-3">
                 <Label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 ml-1">University / Institution Name</Label>
                 <Input 
@@ -669,8 +669,8 @@ export default function ProgramRequirementForm({ onContinue, onBack, readOnly = 
 
         {/* O-Level Section */}
         {showOLevel && (
-        <Card className="rounded-3xl border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/20 overflow-hidden">
-          <CardHeader className="bg-zinc-50/50 dark:bg-zinc-900/30 border-b border-zinc-100 dark:border-zinc-900 p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <Card className="rounded-2xl md:rounded-3xl border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/20 overflow-hidden">
+          <CardHeader className="bg-zinc-50/50 dark:bg-zinc-900/30 border-b border-zinc-100 dark:border-zinc-900 p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 md:w-12 md:h-12 bg-red-700 dark:bg-red-900/30 rounded-2xl flex items-center justify-center text-red-100 shrink-0">
                   <CheckCircle className="w-5 h-5 md:w-6 md:h-6" />
@@ -688,7 +688,7 @@ export default function ProgramRequirementForm({ onContinue, onBack, readOnly = 
                 </Button>
             )}
           </CardHeader>
-          <CardContent className="p-6 md:p-8 space-y-10">
+          <CardContent className="px-2 py-6 sm:p-6 md:p-8 space-y-10">
             {oLevelResults.map((result, resIndex) => (
                 <div key={result.id} className="p-6 md:p-8 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl bg-zinc-50/30 dark:bg-zinc-900/10 space-y-8 relative group/sitting transition-all hover:border-red-100 dark:hover:border-red-900/30">
                     <div className="absolute top-4 right-4 flex items-center gap-2">
@@ -821,12 +821,12 @@ export default function ProgramRequirementForm({ onContinue, onBack, readOnly = 
 
         {/* Additional Information */}
         {textRequirements.length > 0 && (
-            <Card className="rounded-3xl border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/20 overflow-hidden">
-                <CardHeader className="bg-zinc-50/50 dark:bg-zinc-900/30 border-b border-zinc-100 dark:border-zinc-900 p-8">
-                    <CardTitle className="text-2xl font-bold tracking-tight">Additional Information</CardTitle>
+            <Card className="rounded-2xl md:rounded-3xl border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/20 overflow-hidden">
+                <CardHeader className="bg-zinc-50/50 dark:bg-zinc-900/30 border-b border-zinc-100 dark:border-zinc-900 p-4 sm:p-6 md:p-8">
+                    <CardTitle className="text-xl md:text-2xl font-bold tracking-tight">Additional Information</CardTitle>
                     <CardDescription className="font-medium">Please provide the supplementary information required for this specific program.</CardDescription>
                 </CardHeader>
-                <CardContent className="p-8 space-y-6">
+                <CardContent className="px-2 py-6 sm:p-6 md:p-8 space-y-6">
                     {textRequirements.map((req, idx) => (
                         <div key={idx} className="space-y-3">
                             <Label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 ml-1">{req.name}</Label>
@@ -845,19 +845,19 @@ export default function ProgramRequirementForm({ onContinue, onBack, readOnly = 
 
         {/* Documents Section */}
         {allRequiredDocs.length > 0 && (
-          <Card className="rounded-3xl border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/20 overflow-hidden">
-            <CardHeader className="bg-zinc-50/50 dark:bg-zinc-900/30 border-b border-zinc-100 dark:border-zinc-900 p-8">
+          <Card className="rounded-2xl md:rounded-3xl border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/20 overflow-hidden">
+            <CardHeader className="bg-zinc-50/50 dark:bg-zinc-900/30 border-b border-zinc-100 dark:border-zinc-900 p-4 sm:p-6 md:p-8">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-red-100 dark:bg-red-900/20 rounded-2xl flex items-center justify-center text-red-600">
-                    <Files className="w-6 h-6" />
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-red-100 dark:bg-red-900/20 rounded-2xl flex items-center justify-center text-red-600 shrink-0">
+                    <Files className="w-5 h-5 md:w-6 md:h-6" />
                 </div>
                 <div>
-                    <CardTitle className="text-2xl font-bold tracking-tight">Credential Uploads</CardTitle>
-                    <CardDescription className="font-medium">Attach high-quality scanned copies of your original documents.</CardDescription>
+                    <CardTitle className="text-xl md:text-2xl font-bold tracking-tight">Credential Uploads</CardTitle>
+                    <CardDescription className="text-xs md:text-sm font-medium">Attach high-quality scanned copies of your original documents.</CardDescription>
                 </div>
               </div>
             </CardHeader>
-            <CardContent className="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <CardContent className="px-2 py-6 sm:p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               {allRequiredDocs.map((docName: string, idx: number) => {
                  const uploadedDoc = application?.documents?.find(d => d.documentName === docName);
                  const isUploaded = !!uploadedDoc;
@@ -908,14 +908,14 @@ export default function ProgramRequirementForm({ onContinue, onBack, readOnly = 
         )}
 
         {/* Actions */}
-        <div className="flex items-center gap-6 pt-10 border-t border-zinc-100 dark:border-zinc-900">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-6 md:pt-10 border-t border-zinc-100 dark:border-zinc-900">
             {onBack && (
               <Button
                 type="button"
                 variant="outline"
                 onClick={onBack}
                 disabled={admissionLoading}
-                className="h-16 px-10 rounded-2xl border-2 font-extrabold text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-900 active:scale-95 transition-all"
+                className="h-14 md:h-16 px-6 md:px-10 rounded-2xl border-2 font-extrabold text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-900 active:scale-95 transition-all w-full sm:w-auto justify-center"
               >
                 <ArrowLeft className="w-5 h-5 mr-3" />
                 Back
@@ -936,7 +936,7 @@ export default function ProgramRequirementForm({ onContinue, onBack, readOnly = 
                     }));
                 }}
                 disabled={admissionLoading}
-                className="h-16 px-10 rounded-2xl border-2 font-extrabold text-blue-600 border-blue-100 bg-blue-50/50 hover:bg-blue-100 hover:border-blue-200 active:scale-95 transition-all"
+                className="h-14 md:h-16 px-6 md:px-10 rounded-2xl border-2 font-extrabold text-blue-600 border-blue-100 bg-blue-50/50 hover:bg-blue-100 hover:border-blue-200 active:scale-95 transition-all w-full sm:w-auto justify-center"
                 >
                 <Save className="w-5 h-5 mr-3" />
                 Save as Draft
@@ -946,7 +946,7 @@ export default function ProgramRequirementForm({ onContinue, onBack, readOnly = 
             <Button
               type="submit"
               disabled={admissionLoading}
-              className="ml-auto h-16 px-12 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-black shadow-2xl shadow-blue-600/30 active:scale-95 transition-all"
+              className="sm:ml-auto h-14 md:h-16 px-8 md:px-12 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-black shadow-2xl shadow-blue-600/30 active:scale-95 transition-all w-full sm:w-auto justify-center"
             >
               {admissionLoading ? (
                 <Loader2 className="w-5 h-5 animate-spin mr-3" />
@@ -957,7 +957,7 @@ export default function ProgramRequirementForm({ onContinue, onBack, readOnly = 
                 </>
               ) : (
                 <>
-                  Save & Finalize Academic Data
+                  Save & Finalize
                   <ArrowRight className="w-5 h-5 ml-4" />
                 </>
               )}

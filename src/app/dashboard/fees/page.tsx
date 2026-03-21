@@ -244,7 +244,8 @@ function FeesContent() {
   const displayFees = useMemo(() => applicableFees, [applicableFees])
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500">
+    <div className="p-4 sm:p-6 lg:p-10">
+      <div className="max-w-7xl mx-auto space-y-8 animate-in fade-in duration-500">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-zinc-100 dark:border-zinc-900">
         <div>
@@ -637,7 +638,8 @@ function FeesContent() {
         }}
       />
     </div>
-  )
+  </div>
+)
 }
 
 export default function FeesPage() {
